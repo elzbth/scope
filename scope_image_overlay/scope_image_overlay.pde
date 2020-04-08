@@ -14,35 +14,49 @@ int maskRadius;
 
 float maxDist;
 
-int mX;
-int mY;
+int mX, mY, mX2, mY2;
+
+float halfDiag = sqrt(pow(width,2)+pow(height,2))/2;
 
 void setup() {
-  size(500, 500, JAVA2D);
+  size(500, 500, P3D);
 
   photo1 = loadImage("photo1.png");
   photo2 = loadImage("photo2.png");
   mask0 = loadImage("../scratchbook/mask_250_smooth.png");
   mask = mask0.get();
 
-  PG_macro = createGraphics(width, height, JAVA2D);
-  PG_mask = createGraphics(width, height, JAVA2D);
+  PG_macro = createGraphics(width, height, P3D);
+  PG_mask = createGraphics(width, height, P3D);
 
   maskArray = new int[width*height];
   maxDist = dist(0, 0, width, height);
-  frameRate(20);
-
+  //frameRate(20);
 }
 
 void draw() {
-  int x = mouseX;
-  int y = mouseY;
-  //image(PG_micro, width/2, height/2);
-  background(photo1);
+  mX = mouseX;
+  mY = mouseY;
+  mX2 = (mX - width/2);
+  mY2 = (mY - height/2);
+  image(photo1, 0, 0);
+  
   PG_mask.beginDraw();
   PG_mask.clear();
   PG_mask.imageMode(CENTER);
-  PG_mask.image(mask0, x, y);
+  PG_mask.pushMatrix();
+  PG_mask.translate(PG_mask.width/2, PG_mask.height/2);
+  // option 1 (work ok)
+    PG_mask.rotateY(radians(map(mouseX, 0, width, 45, -45)));
+    PG_mask.rotateX(radians(map(mouseY, 0, height, -45, 45)));
+  
+  //option 2 (needs some work)
+    //float rotAngle = atan(mY2/(mX2+0.001));
+    //PG_mask.rotate(rotAngle);
+    //println(degrees(atan(mY2/(mX2+0.001))));
+    //PG_mask.scale(map(dist(mX, mY, width/2, height/2), 0, halfDiag, 1, 1.5), 1, 1);
+  PG_mask.image(mask0, mX2, mY2);
+  PG_mask.popMatrix();
   PG_mask.endDraw();
 
   mask = PG_mask.get(); //pass contents of PG to image (so sizes match)
