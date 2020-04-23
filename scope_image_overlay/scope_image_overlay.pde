@@ -1,5 +1,3 @@
-
-
 //photo1 is behind photo2
 PGraphics PG_macro, PG_mask;
 PImage photo1, photo2, mask0, mask;
@@ -8,15 +6,15 @@ int imageWidth = 500;
 int imageHeight = 500;
 
 //alternate implementation with mask array
-int[] maskArray;
+//int[] maskArray;
 
-int maskRadius;
+//int maskRadius;
 
-float maxDist;
+//float maxDist;
 
 int mX, mY, mX2, mY2;
 
-float halfDiag = sqrt(pow(width,2)+pow(height,2))/2;
+//float halfDiag = sqrt(pow(width,2)+pow(height,2))/2;
 
 void setup() {
   size(500, 500, P3D);
@@ -29,14 +27,14 @@ void setup() {
   PG_macro = createGraphics(width, height, P3D);
   PG_mask = createGraphics(width, height, P3D);
 
-  maskArray = new int[width*height];
-  maxDist = dist(0, 0, width, height);
+  //maskArray = new int[width*height];
+  //maxDist = dist(0, 0, width, height);
   //frameRate(20);
 }
 
 void draw() {
   mX = mouseX;
-  mY = mouseY;
+  mY = mouseY;  
   mX2 = (mX - width/2);
   mY2 = (mY - height/2);
   image(photo1, 0, 0);
@@ -83,7 +81,7 @@ void draw() {
 }
 
 //update maskArray to be a hole of 0s around the mouse pointer position
-void updateMask() {
+/*void updateMask() {
   int counter = 0;
   int maskValue = 0;
   for (int i = 0; i < width; i++) {
@@ -103,3 +101,4 @@ void updateMask() {
     }
   }
 }
+*/
