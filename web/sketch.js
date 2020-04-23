@@ -26,7 +26,7 @@ function draw() {
 	PG_mask.push();
 	PG_mask.translate(mX2, mY2);
 	PG_mask.rotateY(radians(map(mouseX, 0, width, 45, -45)));
-	PG_mask.rotateX(radians(map(mouseX, 0, height, -45, 45)));
+	PG_mask.rotateX(radians(map(mouseY, 0, height, 45, -45)));
 	PG_mask.imageMode(CENTER);
 	PG_mask.image(mask0, 0, 0);
 	PG_mask.pop();
