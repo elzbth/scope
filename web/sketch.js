@@ -6,8 +6,8 @@ function setup() {
   createCanvas(imageWidth, imageHeight, WEBGL);
   imageMode(CENTER);
   photo1 = loadImage('data/photo1.png');
-  photo2 = loadImage('data/photo2.png');
-  mask0 = loadImage('data/mask_500.png');
+  photo2 = loadImage('data/ScopeOnlineUrbanTest2_purple.jpg');
+  mask0 = loadImage('data/mask_500_10_100.png');
   mask = mask0.get();
   PG_macro = createGraphics(imageWidth, imageHeight, WEBGL);
   PG_mask = createGraphics(imageWidth, imageHeight, WEBGL);
